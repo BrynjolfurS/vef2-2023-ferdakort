@@ -1,10 +1,12 @@
 import { useEffect, useState } from "react";
-import { Marker, Popup } from "react-leaflet";
+import { Marker, Tooltip } from "react-leaflet";
+import AttractionPopup from "@components/Popup/attractionPopup";
 
 export default function Attractions() {
     const [state, setState] = useState('');
     const [attractions, setAttractions] = useState([]);
-    const [markerClicked, setMarkerClicked] = useState(0);
+    const [popupOpen, setPopupOpen] = useState(false);
+    const [indexSelected, setIndexSelected] = useState(0);
 
     async function getAllAttractions() {
         setState('loading');
@@ -29,6 +31,7 @@ export default function Attractions() {
     useEffect(() => {
         getAllAttractions();
     }, []);
+
     return (
         <>
             {state === 'loading' &&(
@@ -38,22 +41,20 @@ export default function Attractions() {
                 <p>Búa til failed marker/msg</p>
             )}
             {state === 'data' &&(
-                attractions.map((attraction) => {
+                attractions.map((attraction, i) => {
                     return (
                         <Marker 
                             key={attraction.id} 
                             position={[Number(attraction.latitude), Number(attraction.longitude)]}
                             eventHandlers={{
                                 click: () => {
-                                setMarkerClicked(attraction.id);
+                                setIndexSelected(i)
+                                setPopupOpen(true);
                                 }
                             }}
                         >
-                        <Popup>
-                            <h2>{attraction.name}</h2>
-                            <p>{attraction.type}</p>
-                            <p>{attraction.description}</p>
-                        </Popup>
+                            <Tooltip>{attraction.name}</Tooltip>
+                            <AttractionPopup attraction={attractions[indexSelected]} open={popupOpen} setOpen={setPopupOpen}/>
                         </Marker>
                       )
                 })

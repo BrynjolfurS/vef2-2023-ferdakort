@@ -3,7 +3,7 @@ import Layout from '@components/Layout';
 import Section from '@components/Section';
 import Container from '@components/Container';
 import Map from '@components/Map';
-import Button from '@/components/Button/Button';
+import Button from '@components/Button/Button';
 import { Inter } from 'next/font/google'
 import styles from '@styles/Home.module.scss'
 import { useState, useRef } from 'react';
@@ -28,8 +28,7 @@ export default function Home() {
           </h1>
         <Container>
         
-          <Map 
-            ref={mapRef}
+          <Map
             className={styles.homeMap} 
             width="1800" height="1080" 
             selection={state} 

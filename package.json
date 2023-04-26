@@ -9,6 +9,9 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@emotion/react": "^11.10.6",
+    "@emotion/styled": "^11.10.6",
+    "@mui/material": "^5.12.2",
     "auth0": "^3.3.0",
     "copy-webpack-plugin": "^11.0.0",
     "eslint": "8.38.0",

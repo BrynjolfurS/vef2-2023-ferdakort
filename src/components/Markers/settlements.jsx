@@ -1,11 +1,12 @@
-import SettlementBox from "@components/InfoBox/settlementBox";
+import SettlementPopup from "@components/Popup/settlementPopup";
 import { useEffect, useState } from "react";
-import { Marker, Popup, Tooltip } from "react-leaflet";
+import { Marker, Tooltip } from "react-leaflet";
 
-export default function Settlements() {
+export default function Settlements({ ref }) {
     const [state, setState] = useState('');
     const [settlements, setSettlements] = useState([]);
     const [popupOpen, setPopupOpen] = useState(false);
+    const [indexSelected, setIndexSelected] = useState(0);
 
     async function getAllSettlements() {
         setState('loading');
@@ -41,28 +42,25 @@ export default function Settlements() {
                 <p>Búa til failed marker/msg</p>
             )}
             {state === 'data' &&(
-                settlements.map((settlement) => {
+                settlements.map((settlement, i) => {
                     return (
                         <Marker 
                           key={settlement.id} 
                           position={[Number(settlement.latitude), Number(settlement.longitude)]}
                           eventHandlers={{
                             click: () => { 
-
+                                setIndexSelected(i)
                                 setPopupOpen(true);
                              }
                           }}
                         >
-                        <Tooltip>{settlement.name}</Tooltip>
+                            <Tooltip>{settlement.name}</Tooltip>
+                            <SettlementPopup settlement={settlements[indexSelected]} open={popupOpen} setOpen={setPopupOpen} />
                         </Marker>
                       )
                 })
             )}
-            <SettlementBox settlement={settlements[4]} open={popupOpen} setOpen={setPopupOpen}/>
+            
         </>
-    )
+    );
 }
-// settlements.map((settlement) => {
-//     {console.log([settlement.latitude, settlement.longitude])}
-//     <Marker position={[settlement.latitude, settlement.longitude]}></Marker>
-// })

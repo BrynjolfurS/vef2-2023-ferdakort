@@ -19,3 +19,30 @@ img {
   max-width: 100%;
   height: auto;
 }
+
+.leaflet-popup-content-wrapper,
+.leaflet-popup-tip {
+  background: transparent;
+  color: transparent;
+  box-shadow: none;
+}
+
+.leaflet-popup-content-wrapper {
+  padding: 0;
+  text-align: left;
+  border-radius: 0;
+}
+
+.leaflet-popup {
+  width: 300px;
+  margin-bottom: 0;
+  min-width: 300px;
+  min-height: 300px;
+  max-width: 350px;
+  max-height: 350px;
+  opacity: 1;
+}
+
+.leaflet-popup-content p {
+  margin: 0;
+}
