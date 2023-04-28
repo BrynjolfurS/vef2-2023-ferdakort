@@ -12,7 +12,7 @@ import { useState } from "react";
 
 const { Popup } = ReactLeaflet;
 
-export default function SettlementPopup({ updateSettlement, settlement, open, setOpen, disableEdit }) {
+export default function SettlementPopup({ deleteSettlement, updateSettlement, settlement, open, setOpen, disableEdit }) {
     const [edit, setEdit] = useState(false);
     // const map = ReactLeaflet.useMap();
 
@@ -20,14 +20,19 @@ export default function SettlementPopup({ updateSettlement, settlement, open, se
         setOpen(false);
     }
 
+    function settlementDeleted(myId) {
+        handleClose();
+        deleteSettlement(myId);
+    }
+
     return (
         <>
             {edit === true &&(
                 <>
-                <EditPopup update={updateSettlement} entity={settlement} entityType={'settlement'} open={edit} setOpen={setEdit}/>
+                <EditPopup del={settlementDeleted} update={updateSettlement} entity={settlement} entityType={'settlement'} open={edit} setOpen={setEdit}/>
                 </>
             )}
-            {edit === false &&(
+            {edit === false && open === true &&(
                 <Popup autoPan={false} sx={{ maxWidth: "auto",}}>
                     <Modal
                         open={open}

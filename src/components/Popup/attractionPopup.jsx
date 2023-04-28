@@ -11,17 +11,22 @@ import { useState } from "react";
 
 const { Popup } = ReactLeaflet;
 
-export default function AttractionPopup({ updateAttraction, attraction, open, setOpen }) {
+export default function AttractionPopup({ deleteAttraction, updateAttraction, attraction, open, setOpen }) {
     const [edit, setEdit] = useState(false);
 
     function handleClose() {
         setOpen(false);
     }
 
+    function attractionDeleted(myId) {
+        handleClose();
+        deleteAttraction(myId);
+    }
+
     return (
         <>
             {edit === true &&(
-                <EditPopup update={updateAttraction} entity={attraction} entityType={'attraction'} open={edit} setOpen={setEdit}/>
+                <EditPopup del={attractionDeleted} update={updateAttraction} entity={attraction} entityType={'attraction'} open={edit} setOpen={setEdit}/>
             )}
             {edit === false &&(
                 <Popup autoPan={false} sx={{ maxWidth: "auto", }}>

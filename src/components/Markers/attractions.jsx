@@ -41,6 +41,13 @@ export default function Attractions() {
         setAttractions(newAttractions);
     }
 
+    function deleteAttraction(deletedAttraction) {
+        const attractionToRemoveIndex = attractions.findIndex((e) => e.id === Number(deletedAttraction.id));
+        let newAttractions = attractions.slice();
+        newAttractions.splice(attractionToRemoveIndex, 1);
+        setAttractions(newAttractions); 
+    }
+
     return (
         <>
             {state === 'loading' &&(
@@ -63,7 +70,7 @@ export default function Attractions() {
                             }}
                         >
                             <Tooltip>{attraction.name}</Tooltip>
-                            <AttractionPopup updateAttraction={updateAttraction} attraction={attractions[indexSelected]} open={popupOpen} setOpen={setPopupOpen}/>
+                            <AttractionPopup deleteAttraction={deleteAttraction} updateAttraction={updateAttraction} attraction={attractions[indexSelected]} open={popupOpen} setOpen={setPopupOpen}/>
                         </Marker>
                       )
                 })

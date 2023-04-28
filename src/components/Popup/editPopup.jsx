@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 const { Popup } = ReactLeaflet;
 const apiURL = process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL;
 
-export default function EditPopup({ update, entity, entityType, open, setOpen }) {
+export default function EditPopup({ del, update, entity, entityType, open, setOpen }) {
     function handleClose() {
         setOpen(false);
     }
@@ -130,6 +130,13 @@ export default function EditPopup({ update, entity, entityType, open, setOpen })
             });
             if (!response.ok) {
                 throw new Error('result not ok');
+            }
+
+            const deletedEntityId = await response.json();
+            if (deletedEntityId) {
+                console.log('Entity successfully deleted');
+                handleClose();
+                del(deletedEntityId);
             }
         } catch (e) {
             console.warn('unable to delete entity');

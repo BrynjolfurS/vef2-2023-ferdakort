@@ -41,6 +41,13 @@ export default function Settlements({ ref }) {
         setSettlements(newSettlements);
     }
 
+    function deleteSettlement(deletedSettlement) {
+        const settlementToRemoveIndex = settlements.findIndex((e) => e.id === Number(deletedSettlement.id));
+        let newSettlements = settlements.slice();
+        newSettlements.splice(settlementToRemoveIndex, 1);
+        setSettlements(newSettlements); 
+    }
+
     return (
         <>
             {state === 'loading' &&(
@@ -63,7 +70,7 @@ export default function Settlements({ ref }) {
                           }}
                         >
                             <Tooltip>{settlement.name}</Tooltip>
-                            <SettlementPopup updateSettlement={updateSettlement} settlement={settlements[indexSelected]} open={popupOpen} setOpen={setPopupOpen} disableEdit={false} />
+                            <SettlementPopup deleteSettlement={deleteSettlement} updateSettlement={updateSettlement} settlement={settlements[indexSelected]} open={popupOpen} setOpen={setPopupOpen} disableEdit={false} />
                         </Marker>
                       )
                 })
