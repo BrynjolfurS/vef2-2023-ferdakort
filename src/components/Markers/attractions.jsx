@@ -2,6 +2,8 @@ import { useEffect, useState } from "react";
 import { Marker, Tooltip } from "react-leaflet";
 import AttractionPopup from "@components/Popup/attractionPopup";
 
+const apiURL = process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL;
+
 export default function Attractions() {
     const [state, setState] = useState('');
     const [attractions, setAttractions] = useState([]);
@@ -12,7 +14,7 @@ export default function Attractions() {
         setState('loading');
 
         const response = await fetch(
-            `http://localhost:3001/attractions`
+            `${apiURL}attractions`
         );
         const data = await response.json();
         setAttractions(data);
@@ -31,6 +33,13 @@ export default function Attractions() {
     useEffect(() => {
         getAllAttractions();
     }, []);
+
+    function updateAttraction(modifiedAttraction) {
+        const attractionToReplaceIndex = attractions.findIndex((e) => e.id === modifiedAttraction[0].id);
+        const newAttractions = attractions.slice();
+        newAttractions[attractionToReplaceIndex] = modifiedAttraction[0];
+        setAttractions(newAttractions);
+    }
 
     return (
         <>
@@ -54,7 +63,7 @@ export default function Attractions() {
                             }}
                         >
                             <Tooltip>{attraction.name}</Tooltip>
-                            <AttractionPopup attraction={attractions[indexSelected]} open={popupOpen} setOpen={setPopupOpen}/>
+                            <AttractionPopup updateAttraction={updateAttraction} attraction={attractions[indexSelected]} open={popupOpen} setOpen={setPopupOpen}/>
                         </Marker>
                       )
                 })

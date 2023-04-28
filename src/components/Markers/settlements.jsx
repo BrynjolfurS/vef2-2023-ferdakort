@@ -2,6 +2,8 @@ import SettlementPopup from "@components/Popup/settlementPopup";
 import { useEffect, useState } from "react";
 import { Marker, Tooltip } from "react-leaflet";
 
+const apiURL = process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL;
+
 export default function Settlements({ ref }) {
     const [state, setState] = useState('');
     const [settlements, setSettlements] = useState([]);
@@ -12,7 +14,7 @@ export default function Settlements({ ref }) {
         setState('loading');
 
         const response = await fetch(
-            `http://localhost:3001/settlements`
+            `${apiURL}settlements`
         );
         const data = await response.json();
         setSettlements(data);
@@ -32,6 +34,12 @@ export default function Settlements({ ref }) {
         getAllSettlements();
     }, []);
 
+    function updateSettlement(modifiedSettlement) {
+        const setToReplaceIndex = settlements.findIndex((e) => e.id === modifiedSettlement[0].id);
+        const newSettlements = settlements.slice();
+        newSettlements[setToReplaceIndex] = modifiedSettlement[0];
+        setSettlements(newSettlements);
+    }
 
     return (
         <>
@@ -55,7 +63,7 @@ export default function Settlements({ ref }) {
                           }}
                         >
                             <Tooltip>{settlement.name}</Tooltip>
-                            <SettlementPopup settlement={settlements[indexSelected]} open={popupOpen} setOpen={setPopupOpen} />
+                            <SettlementPopup updateSettlement={updateSettlement} settlement={settlements[indexSelected]} open={popupOpen} setOpen={setPopupOpen} disableEdit={false} />
                         </Marker>
                       )
                 })

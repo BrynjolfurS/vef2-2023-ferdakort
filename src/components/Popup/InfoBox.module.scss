@@ -2,20 +2,80 @@
     position: absolute;
 }
 
-.card {
-    maxWidth: 345;
+.form_container {
+    min-width: 300px;
+    background-color: #E7E7E7;
+    padding: 16px;
 }
 
-// const useStyles = makeStyles({
-//     card: {
-//         maxWidth: 345
-//     },
-//     media: {
-//         height: 140
-//     },
-//     modal: {
-//         display: 'flex',
-//         alignItems: 'center',
-//         justifyContent: 'center',
-//     }
-// });
+.editForm {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+}
+
+.editForm_input {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    width: 100%;
+    margin-bottom: 15px;
+}
+
+.editForm_input_label {
+    font-size: 1.1em;
+    font-weight: bold;
+    color: #4c4c4c;
+    width: 125px;
+    margin-right: 10px;
+}
+
+.editForm_input_textArea {
+    font-size: 1.1em;
+    padding: 5px;
+    border: 1px solid #4c4c4c;
+    border-radius: 5px;
+    width: 100%;
+    max-width: 300px;
+}
+
+.editForm_submit_button {
+    background-color: #4c4c4c;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    margin-top: 16px;
+    transition: background-color 0.3s;
+}
+
+.editForm_delete_button {
+    background-color: #e74c3c;
+    color: #ffffff;
+    border: none;
+    font-weight: bold;
+    padding: 10px 20px;
+    margin-right: 16px;
+    margin-top: 16px;
+    border-radius: 5px;
+    cursor: pointer;
+    font-size: 1em;
+    transition: background-color 0.3s;
+}
+
+.editForm_buttonRow {
+    display: flex;
+    flex-direction: row;
+    align-items: center;
+}
+
+.editForm_submit_button:hover {
+    background-color: #3a3a3a;
+}
+
+.editForm_divider {
+    border-top: 3px solid #3a3a3a;
+}

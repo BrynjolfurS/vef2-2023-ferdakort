@@ -1,4 +1,5 @@
 import dynamic from 'next/dynamic';
+import { useState } from 'react';
 
 const DynamicMap = dynamic(() => import('./DynamicMap'), {
   ssr: false
