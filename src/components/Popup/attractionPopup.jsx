@@ -8,6 +8,7 @@ import Typography from "@mui/material/Typography";
 import Modal from "@mui/material/Modal";
 import EditPopup from "./editPopup";
 import { useState } from "react";
+import { useAuthorizer } from "@authorizerdev/authorizer-react";
 
 const { Popup } = ReactLeaflet;
 
@@ -23,10 +24,12 @@ export default function AttractionPopup({ deleteAttraction, updateAttraction, at
         deleteAttraction(myId);
     }
 
+    const { user } = useAuthorizer();
+
     return (
         <>
             {edit === true &&(
-                <EditPopup del={attractionDeleted} update={updateAttraction} entity={attraction} entityType={'attraction'} open={edit} setOpen={setEdit}/>
+                <EditPopup loggedInUser={user} del={attractionDeleted} update={updateAttraction} entity={attraction} entityType={'attraction'} open={edit} setOpen={setEdit}/>
             )}
             {edit === false &&(
                 <Popup autoPan={false} sx={{ maxWidth: "auto", }}>
@@ -66,11 +69,13 @@ export default function AttractionPopup({ deleteAttraction, updateAttraction, at
                                     {attraction.description}
                                 </Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button size="small" color="primary" onClick={() => setEdit(true) }>
-                                    Edit
-                                </Button>
-                            </CardActions>
+                            {user !== null && user.roles.some(e => e === 'admin') &&(
+                                <CardActions>
+                                    <Button size="small" color="primary" onClick={() => setEdit(true) }>
+                                        Edit
+                                    </Button>
+                                </CardActions>
+                            )}
                         </Card>
                     </Modal>
                 </Popup>

@@ -14,7 +14,7 @@ import { useEffect, useState } from "react";
 const { Popup } = ReactLeaflet;
 const apiURL = process.env.NEXT_PUBLIC_RAILWAY_API_BASE_URL;
 
-export default function EditPopup({ del, update, entity, entityType, open, setOpen }) {
+export default function EditPopup({ loggedInUser, del, update, entity, entityType, open, setOpen }) {
     function handleClose() {
         setOpen(false);
     }

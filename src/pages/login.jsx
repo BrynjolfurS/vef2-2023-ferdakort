@@ -2,6 +2,7 @@ import { useEffect } from 'react';
 import { Authorizer, useAuthorizer } from '@authorizerdev/authorizer-react';
 import { useRouter } from 'next/router';
 import Layout from '@components/Layout/Layout';
+import styles from '@styles/UserPages.module.scss';
 
 export default function Login() {
 	const { token } = useAuthorizer();
@@ -13,8 +14,10 @@ export default function Login() {
 	}, [token]);
 	return (
 		<Layout>
-			<div className="w-full md:w-2/4">
-				<Authorizer />
+			<div className={styles.loginContainer}>
+				<div className={styles.customLoginWrapper}>
+					<Authorizer />
+				</div>
 			</div>
 		</Layout>
 	);

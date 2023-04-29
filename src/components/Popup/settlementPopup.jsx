@@ -9,6 +9,7 @@ import Modal from "@mui/material/Modal";
 import EditPopup from "./editPopup";
 import { Backdrop } from "@mui/material/Backdrop";
 import { useState } from "react";
+import { useAuthorizer } from "@authorizerdev/authorizer-react";
 
 const { Popup } = ReactLeaflet;
 
@@ -25,11 +26,13 @@ export default function SettlementPopup({ deleteSettlement, updateSettlement, se
         deleteSettlement(myId);
     }
 
+    const { user } = useAuthorizer();
+
     return (
         <>
             {edit === true &&(
                 <>
-                <EditPopup del={settlementDeleted} update={updateSettlement} entity={settlement} entityType={'settlement'} open={edit} setOpen={setEdit}/>
+                <EditPopup loggedInUser={user} del={settlementDeleted} update={updateSettlement} entity={settlement} entityType={'settlement'} open={edit} setOpen={setEdit}/>
                 </>
             )}
             {edit === false &&(
@@ -69,15 +72,17 @@ export default function SettlementPopup({ deleteSettlement, updateSettlement, se
                                     Búa til stutt description fyrir byggðir?
                                 </Typography>
                             </CardContent>
-                            <CardActions>
-                                <Button size="small" color="primary" onClick={() => {
-                                    console.log(open);
-                                    setEdit(true);
-                                }}
-                                >
-                                    Edit
-                                </Button>
-                            </CardActions>
+                            {user !== null && user.roles.some(e => e === 'admin') &&(
+                                <CardActions>
+                                    <Button size="small" color="primary" onClick={() => {
+                                        console.log(open);
+                                        setEdit(true);
+                                    }}
+                                    >
+                                        Edit
+                                    </Button>
+                                </CardActions>
+                            )}
                         </Card>
                     </Modal>
                 </Popup>
