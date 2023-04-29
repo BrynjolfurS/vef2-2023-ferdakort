@@ -9,6 +9,7 @@
     "lint": "next lint"
   },
   "dependencies": {
+    "@authorizerdev/authorizer-react": "^1.1.11",
     "@emotion/react": "^11.10.6",
     "@emotion/styled": "^11.10.6",
     "@mui/material": "^5.12.2",

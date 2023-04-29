@@ -32,7 +32,7 @@ export default function SettlementPopup({ deleteSettlement, updateSettlement, se
                 <EditPopup del={settlementDeleted} update={updateSettlement} entity={settlement} entityType={'settlement'} open={edit} setOpen={setEdit}/>
                 </>
             )}
-            {edit === false && open === true &&(
+            {edit === false &&(
                 <Popup autoPan={false} sx={{ maxWidth: "auto",}}>
                     <Modal
                         open={open}

@@ -12,7 +12,7 @@ import styles from "@components/Popup/InfoBox.module.scss"
 import { useEffect, useState } from "react";
 
 const { Popup } = ReactLeaflet;
-const apiURL = process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL;
+const apiURL = process.env.NEXT_PUBLIC_RAILWAY_API_BASE_URL;
 
 export default function EditPopup({ del, update, entity, entityType, open, setOpen }) {
     function handleClose() {

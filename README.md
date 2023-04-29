@@ -27,4 +27,14 @@ SAMA FYRIR ATTRACTIONS (NEMA settlements & attractions vísa í POINTS/PLACES t�
 
 
 
----------- DIALOG ----------------
+---------- AUTHORIZER DASHBOARD ----------------
+Username: admin
+Password: administerJustice
+
+---- Ferdakort user ----
+binni@ferdakort.is
+Binni1#
+
+(DELETE)
+clientID: d382b794-2db1-4185-948a-b2311abd2608
+clientSecret: 2c29aa3e-dcc8-4fdc-bab0-51f01064f715

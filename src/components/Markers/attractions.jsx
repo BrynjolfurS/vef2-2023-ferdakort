@@ -2,7 +2,7 @@ import { useEffect, useState } from "react";
 import { Marker, Tooltip } from "react-leaflet";
 import AttractionPopup from "@components/Popup/attractionPopup";
 
-const apiURL = process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL;
+const apiURL = process.env.NEXT_PUBLIC_RAILWAY_API_BASE_URL;
 
 export default function Attractions() {
     const [state, setState] = useState('');

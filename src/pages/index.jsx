@@ -17,7 +17,7 @@ export default function Home() {
   return (
     <Layout>
       <Head>
-        <title>Next.js Leaflet Starter</title>
+        <title>Ferðakortið</title>
         <meta name="description" content="Create mapping apps with Next.js Leaflet Starter" />
         <link rel="icon" href="/favicon.ico" />
       </Head>

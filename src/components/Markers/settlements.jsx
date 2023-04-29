@@ -2,7 +2,7 @@ import SettlementPopup from "@components/Popup/settlementPopup";
 import { useEffect, useState } from "react";
 import { Marker, Tooltip } from "react-leaflet";
 
-const apiURL = process.env.NEXT_PUBLIC_LOCAL_API_BASE_URL;
+const apiURL = process.env.NEXT_PUBLIC_RAILWAY_API_BASE_URL;
 
 export default function Settlements({ ref }) {
     const [state, setState] = useState('');
