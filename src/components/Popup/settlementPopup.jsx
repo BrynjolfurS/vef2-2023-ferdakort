@@ -69,7 +69,7 @@ export default function SettlementPopup({ deleteSettlement, updateSettlement, se
                                     {settlement.name}
                                 </Typography>
                                 <Typography variant="body2" color="textSecondary" component="p" sx={{ paddingLeft: '16px',}}>
-                                    Búa til stutt description fyrir byggðir?
+                                    {settlement.description}
                                 </Typography>
                             </CardContent>
                             {user !== null && user.roles.some(e => e === 'admin') &&(

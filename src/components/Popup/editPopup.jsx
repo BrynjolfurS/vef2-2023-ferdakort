@@ -22,6 +22,7 @@ export default function EditPopup({ loggedInUser, del, update, entity, entityTyp
     const [settlement, setSettlement] = useState({
         id: '',
         name: '',
+        description: '',
         longitude: '',
         latitude: ''
     });
@@ -75,6 +76,7 @@ export default function EditPopup({ loggedInUser, del, update, entity, entityTyp
                 },
                 body: JSON.stringify({
                     name: s.name ? s.name : entity.name,
+                    description: s.description ? s.description : entity.description,
                     longitude: s.longitude ? s.longitude : entity.longitude,
                     latitude: s.latitude ? s.latitude : entity.latitude,
                 }),
@@ -175,13 +177,13 @@ export default function EditPopup({ loggedInUser, del, update, entity, entityTyp
                                     <label className={styles.editForm_input_label} for="type">Type: {entity.type}</label>
                                     <input className={styles.editForm_input_textArea} id="type" name="type" type="text" value={attraction.type} onChange={handleInputChange}/>
                                 </div>
-                                <label className={styles.editForm_input_label} for="description">Description: </label>
-                                <p>{entity.description}</p>
-                                <div className={styles.editForm_input}>
-                                    <input className={styles.editForm_input_textArea} id="description" name="description" type="text" value={attraction.description} onChange={handleInputChange}/>
-                                </div>
                             </>
                         )}
+                        <label className={styles.editForm_input_label} for="description">Description: </label>
+                            <p>{entity.description}</p>
+                            <div className={styles.editForm_input}>
+                            <input className={styles.editForm_input_textArea} id="description" name="description" type="text" value={isSettlement ? settlement.description : attraction.description} onChange={handleInputChange}/>
+                        </div>
                         <div className={styles.editForm_input}>
                             <label className={styles.editForm_input_label} for="longitude">Longitude: {entity.longitude}</label>
                             <input className={styles.editForm_input_textArea} id="longitude" name="longitude" type="text" value={isSettlement ? settlement.longitude : attraction.longitude} onChange={handleInputChange}/>
